@@ -1,0 +1,31 @@
+MVP
+- cursor
+- press and hold Z to bring up menu
+	- road
+	- house
+	- bulldozer
+	- query
+- build road (press X)
+- build house (press X)
+- delete road/house (press X) (maybe becomes a red cursor?)
+- query road/house/grass (press X) (maybe becomes a blue cursor?)
+- sound effects
+- animations/visual effects
+- intro: text. You are glorious leader. Build a village with at least 50 people
+- win screen
+
+
+Notes:
+- UI
+	- https://c10.patreonusercontent.com/3/eyJxIjoxMDAsIndlYnAiOjB9/patreon-media/p/post/14798512/3489ed761c144774aaf60b5109d8d318/1.gif?token-time=1631577600&token-hash=212yaBtaf5w1BuDAhNvqI9YnQKfISPUeFvwlOH5dc9s%3D
+- vegetation:
+	- https://img.itch.zone/aW1hZ2UvMzI1ODUvMTM5MzM3LnBuZw==/original/yMLkIB.png
+	- https://64.media.tumblr.com/9ae1c51e0ff766a9ddb4fe32b1604a06/tumblr_inline_orlop1s4SE1qdiwz3_1280.gif
+- build dust
+	- https://64.media.tumblr.com/0a09c626ab6664aff9efaa399c279f9e/tumblr_inline_orlo74zaAn1qdiwz3_1280.gif
+
+
+Nice-to-haves:
+- birds flying above
+- leaves or butterflies floating across
+
