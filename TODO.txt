@@ -1,10 +1,11 @@
-MVP
-- cursor
 - press and hold Z to bring up menu
 	- road
 	- house
 	- bulldozer
 	- query
+
+
+MVP
 - build road (press X)
 - build house (press X)
 - delete road/house (press X) (maybe becomes a red cursor?)
@@ -13,7 +14,17 @@ MVP
 - animations/visual effects
 - intro: text. You are glorious leader. Build a village with at least 50 people
 - win screen
-
+cursor, advanced:
+- get a pixel in top right, and move it with arrows
+- print coordinates of corners of cursor; when cursor moves, corners move
+- create a function that takes in cursor and pixel - move the pixel along border:
+	- starts in top left
+	- moves to the left by one pixel every frame 
+		- ie its y value is always same as top left
+		- when it hits top right, it's x value is always same as top-right
+		- and so on...
+- create sn L-shaped line of an array of pixel coordinates
+	- for each pixel in L-shape, run it through the above function
 
 Notes:
 - UI
@@ -28,4 +39,8 @@ Notes:
 Nice-to-haves:
 - birds flying above
 - leaves or butterflies floating across
+
+DONE:
+cursor:
+- basic bordered movement
 
