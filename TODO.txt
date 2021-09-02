@@ -1,8 +1,33 @@
 - press and hold Z to bring up menu
-	- road
-	- house
-	- bulldozer
-	- query
+	- create build bar object
+		- build bar is a fixed rect
+		- buttons can be generated (and have to be available as objects). Make a function that takes in build_bar and table of sprites:
+			- using build bar x0, y0
+			- using sprite's width
+			- using gap between buttons
+			- in the end we want
+			buttons = {
+				{
+					x0 = 1,
+					y0 = 1,
+					x1 = 1, -- given x0, use sprite width to work this out
+					y1 = 1,
+					col = 1,
+					inner_button = {
+						x0 = 1,
+						y0 = 1,
+						x1 = 1, -- given x0, use sprite width to work this out
+						y1 = 1,
+						col = 1,
+					},
+					icon = {
+						x0 = 1,
+						y0 = 1,
+						sprite = 1
+					}
+				}, ..and so on for rest of buttons
+			}
+
 
 
 MVP
@@ -39,6 +64,8 @@ Notes:
 Nice-to-haves:
 - birds flying above
 - leaves or butterflies floating across
+- build menu slowly moves up on hold Z
+- move build_bar buttons in middle instead of justified to the left. This will give room at edges of bar to pixel-art it into a board 
 
 DONE:
 cursor:
