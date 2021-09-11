@@ -14,16 +14,24 @@
     outer_col = 2,
     inner_col = 3,
     icon_border = 3, -- from outer edge of btn to icon edge
-    inner_btn_border = 2, -- from outer edge of btn to outer inner btn edge 
+    inner_btn_border = 2, -- from outer edge of btn to outer inner btn edge
     width = function(self, sprite_width)
       return ((self.icon_border * 2) + sprite_width)
     end
     },
+    btn_index = 1,
     sprites = { road, hut, bin, query },
     draw = function(self)
+      -- draw build bar
       rectfill(self.x0,self.y0,self.x1,self.y1,self.col)
-      for b in all(self.btns(self)) do
-        rectfill(b.x0,b.y0,b.x1,b.y1,build_bar.btn_config.outer_col)
+      -- draw buttons
+      local btns = self.btns(self)
+      for b in all(btns) do
+        if b == btns[self.btn_index] then
+          rectfill(b.x0,b.y0,b.x1,b.y1,7)
+        else
+          rectfill(b.x0,b.y0,b.x1,b.y1,build_bar.btn_config.outer_col)
+        end
         rectfill(b.inner_btn.x0,b.inner_btn.y0,b.inner_btn.x1,b.inner_btn.y1,build_bar.btn_config.inner_col)
         spr(b.icon.sprite,b.icon.x,b.icon.y)
       end
