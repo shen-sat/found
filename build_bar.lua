@@ -7,6 +7,7 @@
     return self.y1 - self.y0 + 1
    end,
    border = 1,
+   col = 4,
    btn_config = {
     height = 14,
     gap = 2,
@@ -19,7 +20,8 @@
     end
     },
     sprites = { road, hut, bin, query },
-    draw_btns = function(self)
+    draw = function(self)
+      rectfill(self.x0,self.y0,self.x1,self.y1,self.col)
       for b in all(self.btns(self)) do
         rectfill(b.x0,b.y0,b.x1,b.y1,build_bar.btn_config.outer_col)
         rectfill(b.inner_btn.x0,b.inner_btn.y0,b.inner_btn.x1,b.inner_btn.y1,build_bar.btn_config.inner_col)

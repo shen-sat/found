@@ -57,13 +57,9 @@ function _draw()
   -- if btn(0) then do_something() end
 
   rect(0,0,127,127,5) --border
-  rectfill(build_bar.x0,build_bar.y0,build_bar.x1,build_bar.y1,4)
-  build_bar:draw_btns()
-  -- for b in all(build_bar.btns()) do
-  --   rectfill(b.x0,b.y0,b.x1,b.y1,build_bar.btn_config.outer_col)
-  --   rectfill(b.inner_btn.x0,b.inner_btn.y0,b.inner_btn.x1,b.inner_btn.y1,build_bar.btn_config.inner_col)
-  --   spr(b.icon.sprite,b.icon.x,b.icon.y)
-  -- end
+  
+  
+  if btn(4) then build_bar:draw() end
   spr(0,pointer.x,pointer.y)
 end
 
