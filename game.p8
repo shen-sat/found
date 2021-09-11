@@ -31,17 +31,34 @@ function _init()
 end
 
 function _update()
-  if btnp(1) then 
-    pointer.x = min(pointer.x + 8,120)
-  elseif btnp(0) then
-    -- if pointer.x + 8 > 127 then return end
-    -- pointer.x -= 8
-    pointer.x = max(pointer.x - 8,0)
-  elseif btnp(2) then
-    pointer.y = max(pointer.y - 8,0)
-  elseif btnp(3) then
-    pointer.y = min(pointer.y + 8,120)
+  menu_mode = false
+  if btn(4) then menu_mode = true end
+
+  if menu_mode then
+    local increment = 0
+    if btnp(1) then
+      increment = 1
+      build_bar.btn_index = ((build_bar.btn_index + increment)%4)
+      if build_bar.btn_index == 0 then build_bar.btn_index = 4 end
+    elseif btnp(0) then
+      increment = -1
+      build_bar.btn_index = ((build_bar.btn_index + increment)%4)
+      if build_bar.btn_index == 0 then build_bar.btn_index = 4 end
+    end
+    
+
+  else
+    if btnp(1) then 
+      pointer.x = min(pointer.x + 8,120)
+    elseif btnp(0) then
+      pointer.x = max(pointer.x - 8,0)
+    elseif btnp(2) then
+      pointer.y = max(pointer.y - 8,0)
+    elseif btnp(3) then
+      pointer.y = min(pointer.y + 8,120)
+    end
   end
+
 end
 
 function _draw()
@@ -59,7 +76,7 @@ function _draw()
   rect(0,0,127,127,5) --border
   
   
-  if btn(4) then build_bar:draw() end
+  if menu_mode then build_bar:draw() end
   spr(0,pointer.x,pointer.y)
 end
 

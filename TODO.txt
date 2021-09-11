@@ -1,6 +1,7 @@
 use cursor to navigate build bar buttons
 	- when bar comes up, flashing cursor appears
-		- it simply chnages the color of the outer button to white 
+		- it simply chnages the color of the outer button to white
+	- 
 
 
 
@@ -40,6 +41,7 @@ Nice-to-haves:
 - leaves or butterflies floating across
 - build menu slowly moves up on hold Z
 - move build_bar buttons in middle instead of justified to the left. This will give room at edges of bar to pixel-art it into a board 
+- flashing pointer on build bar
 
 DONE:
 cursor:
