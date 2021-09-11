@@ -4,7 +4,19 @@ __lua__
 function _init()
   pointer = {
    x = 0,
-   y = 0
+   y = 0,
+   update = function(self, menu_mode)
+    if menu_mode then return end
+    if btnp(1) then 
+      self.x = min(self.x + 8,120)
+    elseif btnp(0) then
+      self.x = max(self.x - 8,0)
+    elseif btnp(2) then
+      self.y = max(self.y - 8,0)
+    elseif btnp(3) then
+      self.y = min(self.y + 8,120)
+    end
+   end
   }
 
   road = {
@@ -31,52 +43,15 @@ function _init()
 end
 
 function _update()
-  menu_mode = false
-  if btn(4) then menu_mode = true end
-
-  if menu_mode then
-    local increment = 0
-    if btnp(1) then
-      increment = 1
-      build_bar.btn_index = ((build_bar.btn_index + increment)%4)
-      if build_bar.btn_index == 0 then build_bar.btn_index = 4 end
-    elseif btnp(0) then
-      increment = -1
-      build_bar.btn_index = ((build_bar.btn_index + increment)%4)
-      if build_bar.btn_index == 0 then build_bar.btn_index = 4 end
-    end
-    
-
-  else
-    if btnp(1) then 
-      pointer.x = min(pointer.x + 8,120)
-    elseif btnp(0) then
-      pointer.x = max(pointer.x - 8,0)
-    elseif btnp(2) then
-      pointer.y = max(pointer.y - 8,0)
-    elseif btnp(3) then
-      pointer.y = min(pointer.y + 8,120)
-    end
-  end
-
+  menu_mode = btn(4) and true or false
+  pointer:update(menu_mode)
+  build_bar:update(menu_mode)
 end
 
 function _draw()
   cls()
-  
-  -- rect(x0,y0,x1,y1,col)
-  -- game.draw()
-
-  -- draw sprites
-  -- spr()
-
-  --controls (goes from 0-5)
-  -- if btn(0) then do_something() end
-
   rect(0,0,127,127,5) --border
-  
-  
-  if menu_mode then build_bar:draw() end
+  build_bar:draw(menu_mode)
   spr(0,pointer.x,pointer.y)
 end
 
@@ -96,18 +71,6 @@ function copy_table(table)
 
   return new_table
 end
-
--- function show_menu()
---   game.update = menu_update
---   game.draw = menu_draw
--- end
-
--- function menu_update()
---   include trigger to run next thing eg run_level_one()
--- end
-
--- function menu_draw()
--- end
 
 __gfx__
 77777777000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000

@@ -19,9 +19,13 @@
       return ((self.icon_border * 2) + sprite_width)
     end
     },
-    btn_index = 1,
+    btn_index = 0,
     sprites = { road, hut, bin, query },
-    draw = function(self)
+    update = function(self, menu_mode)
+      self:update_btn_index(menu_mode)
+    end,
+    draw = function(self, menu_mode)
+      if not menu_mode then return end
       -- draw build bar
       rectfill(self.x0,self.y0,self.x1,self.y1,self.col)
       -- draw buttons
@@ -93,5 +97,18 @@
       btn.icon = i
       btn.icon.x = btn.x0 + bb.btn_config.icon_border
       btn.icon.y = btn.y0 + bb.btn_config.icon_border
+    end,
+    update_btn_index = function(self,menu_mode)
+      if menu_mode then
+        if btnp(1) then
+          self.btn_index += 1
+        elseif btnp(0) then
+          self.btn_index -= 1
+        end
+        self.btn_index = self.btn_index % #self.sprites
+        if self.btn_index == 0 then self.btn_index = #self.sprites end
+      else
+        self.btn_index = 1
+      end
     end
   }
