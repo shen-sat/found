@@ -1,7 +1,9 @@
 use cursor to navigate build bar buttons
-	- when bar comes up, flashing cursor appears
+	- when bar comes up, cursor appears
 		- it simply chnages the color of the outer button to white
-	- 
+	- when button is selected, and Z is depressed, the chosen sprite should be in pointer
+		- new pointer variable, build_sprite. Starts off empty
+		- when pointer moves along build_bar, it also changes build_sprite to button.icon
 
 
 
@@ -42,6 +44,7 @@ Nice-to-haves:
 - build menu slowly moves up on hold Z
 - move build_bar buttons in middle instead of justified to the left. This will give room at edges of bar to pixel-art it into a board 
 - flashing pointer on build bar
+- flashing build_sprite for pointer
 
 DONE:
 cursor:
