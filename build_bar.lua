@@ -20,9 +20,12 @@
     end
     },
     btn_index = 0,
-    sprites = { road, hut, bin, query },
-    update = function(self, menu_mode)
+    sprites = town_pieces,
+    update = function(self, menu_mode, pointer)
       self:update_btn_index(menu_mode)
+      local btn_index = self.btn_index
+      local chosen_icon = self.btns(self)[btn_index].icon
+      if menu_mode then pointer.town_piece = chosen_icon end
     end,
     draw = function(self, menu_mode)
       if not menu_mode then return end
@@ -41,7 +44,7 @@
       end
     end,
     btns = function(self)
-      local icons = copy_table(self.sprites)
+      local icons = self.sprites
       local first_icon = icons[1]
       local btns = {}
       local prev_btn

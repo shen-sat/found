@@ -1,16 +1,8 @@
-use cursor to navigate build bar buttons
-	- when bar comes up, cursor appears
-		- it simply chnages the color of the outer button to white
-	- when button is selected, and Z is depressed, the chosen sprite should be in pointer
-		- new pointer variable, build_sprite. Starts off empty
-		- when pointer moves along build_bar, it also changes build_sprite to button.icon
+Delete road/house (press X) (maybe becomes a red cursor?)
 
 
 
 MVP
-- build road (press X)
-- build house (press X)
-- delete road/house (press X) (maybe becomes a red cursor?)
 - query road/house/grass (press X) (maybe becomes a blue cursor?)
 - sound effects
 - animations/visual effects
@@ -50,4 +42,6 @@ DONE:
 cursor:
 - basic bordered movement
 - press and hold Z to bring up menu
+- use cursor to navigate build bar buttons
+- use cursor to build
 
