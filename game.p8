@@ -26,15 +26,14 @@ function _init()
     width = 8
   }
 
-  town_pieces = { road, hut, bin, query }
+  pieces = { road, hut, bin, query }
 
-  roads = {}
-  huts = {}
+  built_pieces = {}
 
   pointer = {
    x = 0,
    y = 0,
-   town_piece,
+   piece,
    update = function(self, menu_mode)
     if menu_mode then return end
     if btnp(1) then 
@@ -48,16 +47,13 @@ function _init()
     end
 
     if btnp(5) then
-      local town_piece = {
+      if not pointer.piece then return end 
+      local piece = {
         x = pointer.x,
         y = pointer.y,
-        sprite = pointer.town_piece.sprite
+        sprite = pointer.piece.sprite
       }
-      if pointer.town_piece == road then 
-        add(roads,town_piece) -- beware, this line allows multiple roads with same x,y coordinates
-      elseif pointer.town_piece == hut then
-        add(huts,town_piece) -- beware, this line allows multiple huts with same x,y coordinates
-      end
+      add(built_pieces, piece)
     end
    end
   }
@@ -78,16 +74,11 @@ function _draw()
   spr(0,pointer.x,pointer.y)
   local pointer_type_sprite
   spr(pointer,x,y,w,h,flip_x,flip_y)
-  print(pointer.town_piece,10,10,7)
-
-  for r in all(roads) do
-   spr(r.sprite,r.x,r.y)
+  print(pointer.piece,10,10,7)
+  for p in all(built_pieces) do
+   spr(p.sprite,p.x,p.y)
   end
-  for h in all(huts) do
-   spr(h.sprite,h.x,h.y)
-  end
-  if pointer.town_piece then spr(pointer.town_piece.sprite,pointer.x,pointer.y) end
-  
+  if pointer.piece then spr(pointer.piece.sprite,pointer.x,pointer.y) end
 end
 
 function calculate_x1(x0, width)

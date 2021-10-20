@@ -1,8 +1,11 @@
-Delete road/house (press X) (maybe becomes a red cursor?)
-
-
+Only allow one house/road per tile
+- add roads and houses to same array, built_pieces
+- put in a prints statement to see problem ie that multiple pieces can be built in same tile
+- when btn 5 is pressed, first cycle through objects:
+		- if any objects are in the same position AND they are same piece, then do not build  
 
 MVP
+- delete road/house (press X) (maybe becomes a red cursor?)
 - query road/house/grass (press X) (maybe becomes a blue cursor?)
 - sound effects
 - animations/visual effects
