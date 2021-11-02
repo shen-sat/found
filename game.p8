@@ -2,6 +2,15 @@ pico-8 cartridge // http://www.pico-8.com
 version 32
 __lua__
 function _init()
+  top_text = {
+    text = {},
+    update = function(self)
+      if not btn(5) then self.text = {} end
+    end,
+    assign = function(self, text)
+    end
+  }
+
   built_pieces = {}
   
   road = {
@@ -10,7 +19,8 @@ function _init()
     width = 8,
     x,
     y,
-    activate = build_piece
+    activate = build_piece,
+    text = 'road is here. connects buildings. allows movement of peeple'
   }
 
   hut = {
@@ -39,7 +49,15 @@ function _init()
   query = {
     type = 'query',
     sprite = 4,
-    width = 8
+    width = 8,
+    x,
+    y,
+    activate = function(self,pointer,built_pieces)
+      local local_query = copy_piece(self,pointer)
+      for bp in all(built_pieces) do
+        if do_pieces_match(bp, local_query, false) then top_text:assign(bp.text) end
+      end
+    end
   }
 
   pieces = { road, hut, bin, query }
@@ -74,6 +92,7 @@ end
 
 function _update()
   menu_mode = btn(4) and true or false
+  top_text:update()
   pointer:update(menu_mode)
   build_bar:update(menu_mode, pointer)
 end
@@ -85,7 +104,17 @@ function _draw()
   spr(0,pointer.x,pointer.y)
   local pointer_type_sprite
   spr(pointer,x,y,w,h,flip_x,flip_y)
-  print(#built_pieces,10,10,7)
+  -- print(top_text.text[1],1,1,7)
+  local foobar_text = 'there was a jolly good fellow. his name was shen. he had a tin hat. lalalala'
+  local foobar_lines = convert_text_into_lines(foobar_text)
+  for line in all(foobar_lines) do
+    if line == foobar_lines[1] then
+      print(line,1,1,7)
+    else
+      print(line)
+    end
+  end
+  -- print(convert_words_into_lines(),1,1,7)
   for p in all(built_pieces) do
    spr(p.sprite,p.x,p.y)
   end
@@ -132,6 +161,64 @@ function copy_piece(piece,pointer)
   piece_copy.y = pointer.y
 
   return piece_copy
+end
+
+
+function convert_text_into_words(text)
+  local text = text
+  local words = split(text,' ')
+  local words_copy = {}
+  for word in all(words) do
+    local letters = split(word,'')
+    if letters[#letters] == '.' then
+      add(words_copy, word)
+    else
+      local word_copy = word..' '
+      add(words_copy,word_copy)
+    end
+    
+  end
+  return words_copy
+end
+
+function word_length_pixels(word)
+  local letters = split(word,'')
+  local counter = 0
+  for letter in all(letters) do
+    if ord(letter) < 128 then
+      counter += 4
+    else
+      counter += 8
+    end
+  end
+  return counter
+end
+
+function add_word(line,word)
+  return line..word
+end
+
+function convert_text_into_lines(text)
+  local words = convert_text_into_words(text)
+  local line_length = 0
+  local lines = {}
+  local line = ''
+  for word in all(words) do
+    local word_length = word_length_pixels(word)
+
+    if line_length + word_length < 126 then
+      line = add_word(line,word)
+      line_length += word_length
+    else
+      local line_copy = line
+      add(lines,line_copy)
+      line = ''
+      line = add_word(line,word)
+      line_length = word_length
+    end
+  end
+  add(lines,line)
+  return lines
 end
 
 
