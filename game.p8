@@ -3,11 +3,12 @@ version 32
 __lua__
 function _init()
   top_text = {
-    text = {},
+    lines = {},
     update = function(self)
-      if not btn(5) then self.text = {} end
+      if not btn(5) then self.lines = {} end
     end,
     assign = function(self, text)
+      self.lines  = convert_text_into_lines(text)
     end
   }
 
@@ -106,9 +107,8 @@ function _draw()
   spr(pointer,x,y,w,h,flip_x,flip_y)
   -- print(top_text.text[1],1,1,7)
   local foobar_text = 'there was a jolly good fellow. his name was shen. he had a tin hat. lalalala'
-  local foobar_lines = convert_text_into_lines(foobar_text)
-  for line in all(foobar_lines) do
-    if line == foobar_lines[1] then
+  for line in all(top_text.lines) do
+    if line == top_text.lines[1] then
       print(line,1,1,7)
     else
       print(line)
@@ -165,37 +165,32 @@ end
 
 
 function convert_text_into_words(text)
-  local text = text
   local words = split(text,' ')
-  local words_copy = {}
+  local transformed_words = {}
   for word in all(words) do
     local letters = split(word,'')
+
     if letters[#letters] == '.' then
-      add(words_copy, word)
+      add(transformed_words,word)
     else
-      local word_copy = word..' '
-      add(words_copy,word_copy)
+      local word_with_space = word..' '
+      add(transformed_words,word_with_space)
     end
-    
   end
-  return words_copy
+  return transformed_words
 end
 
 function word_length_pixels(word)
   local letters = split(word,'')
-  local counter = 0
+  local pixels = 0
   for letter in all(letters) do
     if ord(letter) < 128 then
-      counter += 4
+      pixels += 4
     else
-      counter += 8
+      pixels += 8
     end
   end
-  return counter
-end
-
-function add_word(line,word)
-  return line..word
+  return pixels
 end
 
 function convert_text_into_lines(text)
@@ -207,15 +202,13 @@ function convert_text_into_lines(text)
     local word_length = word_length_pixels(word)
 
     if line_length + word_length < 126 then
-      line = add_word(line,word)
       line_length += word_length
     else
-      local line_copy = line
-      add(lines,line_copy)
+      add(lines,line)
       line = ''
-      line = add_word(line,word)
       line_length = word_length
     end
+    line = line..word
   end
   add(lines,line)
   return lines
