@@ -13,19 +13,13 @@ end
 
 road = create_piece(1,8,build_piece,'road. connects buildings. allows movement of peeple')
 hut = create_piece(2,8,build_piece,'hut. houses peeple.')
-
-bin = {
-  sprite = 3,
-  width = 8,
-  x,
-  y,
-  activate = function(self,pointer,built_pieces)
-    local local_bin = copy_piece(self,pointer)
-    for bp in all(built_pieces) do
-      if do_pieces_match(bp, local_bin, false) then del(built_pieces,bp) end
-    end
-  end
-}
+bin = create_piece(3,8)
+bin.activate = function(self,pointer,built_pieces)
+  local local_bin = copy_piece(self,pointer)
+  for bp in all(built_pieces) do
+    if do_pieces_match(bp, local_bin, false) then del(built_pieces,bp) end
+  end  
+end
 
 query = {
   sprite = 4,
