@@ -4,7 +4,7 @@ top_text = {
     if not btn(5) then self.lines = {} end
   end,
   assign = function(self, text)
-    self.lines  = self:convert_text_into_lines(text)
+    self.lines = self:convert_text_into_lines(text)
   end,
   convert_text_into_lines = function(self,text)
     local words = self.convert_text_into_words(text)

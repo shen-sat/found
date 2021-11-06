@@ -2,6 +2,8 @@ pico-8 cartridge // http://www.pico-8.com
 version 32
 __lua__
 function _init()
+  error_messages = {}
+
   built_pieces = {}
  
   pointer = {
@@ -32,10 +34,10 @@ function _init()
   #include pieces.lua
   #include build_bar.lua
   #include top_text.lua
-
 end
 
 function _update()
+  if #error_messages > 0 then return end
   menu_mode = btn(4) and true or false
   top_text:update()
   pointer:update(menu_mode)
@@ -44,6 +46,10 @@ end
 
 function _draw()
   cls()
+  for message in all(error_messages) do
+    print(message)
+  end
+  if #error_messages > 0 then return end
   rect(0,0,127,127,5) --border
   build_bar:draw(menu_mode)
   spr(0,pointer.x,pointer.y)

@@ -4,6 +4,8 @@ Create a create function for creating pieces
 	- x and y are nil
 	- sprite, width, activate and (if text) text is not nil
 	- if text, lines < 3
+- validate function
+	- should interrupt game and print exact errors
 
 
 
