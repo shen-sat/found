@@ -1,13 +1,9 @@
-Query road/house/grass (press X) (maybe becomes a blue cursor?)
-	- write a test wrapper function
-		- take in a word and return length in pixels
-			- get letter that has < 128 (4 pixels wide)
-			- get letter that is >= 128 (8 pixels wide)
-			- get ord space
-			- write word in these two letters and a space, see what is returned
-			- then write a word with an eight pixel char and see what is returned
-		- take in words, and return an array of words
-		- raise an error if #lines > 2
+Create a create function for creating pieces
+- pass functions in
+- it should also have a load function that checks stuff:
+	- x and y are nil
+	- sprite, width, activate and (if text) text is not nil
+	- if text, lines < 3
 
 
 
@@ -55,3 +51,4 @@ cursor:
 - use cursor to build
 - add logic for building on top of existing pieces
 - delete road/house
+- query road/house/grass

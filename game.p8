@@ -3,57 +3,7 @@ version 32
 __lua__
 function _init()
   built_pieces = {}
-  
-  road = {
-    type = 'road',
-    sprite = 1,
-    width = 8,
-    x,
-    y,
-    activate = build_piece,
-    text = 'road. connects buildings. allows movement of peeple'
-  }
-
-  hut = {
-    type = 'hut',
-    sprite = 2,
-    width = 8,
-    x,
-    y,
-    activate = build_piece,
-    text = 'hut. houses peeple.'
-  }
-
-  bin = {
-    type = 'bin',
-    sprite = 3,
-    width = 8,
-    x,
-    y,
-    activate = function(self,pointer,built_pieces)
-      local local_bin = copy_piece(self,pointer)
-      for bp in all(built_pieces) do
-        if do_pieces_match(bp, local_bin, false) then del(built_pieces,bp) end
-      end
-    end
-  }
-
-  query = {
-    type = 'query',
-    sprite = 4,
-    width = 8,
-    x,
-    y,
-    activate = function(self,pointer,built_pieces)
-      local local_query = copy_piece(self,pointer)
-      for bp in all(built_pieces) do
-        if do_pieces_match(bp, local_query, false) then top_text:assign(bp.text) end
-      end
-    end
-  }
-
-  pieces = { road, hut, bin, query }
-
+ 
   pointer = {
    x = 0,
    y = 0,
@@ -79,6 +29,7 @@ function _init()
    end
   }
 
+  #include pieces.lua
   #include build_bar.lua
   #include top_text.lua
 
