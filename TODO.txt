@@ -1,13 +1,3 @@
-Create a create function for creating pieces
-- pass functions in
-- it should also have a load function that checks stuff:
-	- x and y are nil
-	- sprite, width, activate and (if text) text is not nil
-	- if text, lines < 3
-- validate function
-	- should interrupt game and print exact errors
-
-
 
 
 MVP
@@ -54,3 +44,4 @@ cursor:
 - add logic for building on top of existing pieces
 - delete road/house
 - query road/house/grass
+- create a create function for creating pieces
