@@ -22,8 +22,11 @@ function create_piece(arg)
       else
         if not self.sprite then add(result,"piece:"..self.name.." is missing attribute:sprite") end
         if not self.width then add(result,"piece:"..self.name.." is missing attribute:width") end
+        if self.x then add(result,"piece:"..self.name.." should not have attribute:x") end
+        if self.y then add(result,"piece:"..self.name.." should not have attribute:y") end
         if not self.activate then add(result,"piece:"..self.name.." is missing attribute:activate") end
-        if not self.text then add(result,"piece:"..self.name.." is missing attribute:text") end  
+        if not self.text then add(result,"piece:"..self.name.." is missing attribute:text") end
+        if #convert_text_into_lines(self.text) > 2 then add(result,"piece:"..self.name.." has too much text") end
       end
       return result
     end
