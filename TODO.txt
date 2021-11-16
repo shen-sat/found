@@ -1,6 +1,15 @@
-
+- Add background with randomized foilage 
+	- green backgorund
+	create:
+	- seedling
+	- rock
+	- flower
 
 MVP
+- Add top text bar
+	- name
+	- population
+	- lines should change to describe build bar options, if build bar is up
 - sound effects
 - animations/visual effects
 - intro: text. You are glorious leader. Build a village with at least 50 people
